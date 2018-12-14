@@ -1,0 +1,323 @@
+function sendText(text){
+   var botId = "20908a5df63ded0195f6bdac1a";
+  UrlFetchApp.fetch("https://api.groupme.com/v3/bots/post", {"method":"post", "payload":'{"bot_id":"' + botId + '","text":"' + text + '"}'})
+  }
+  
+  function sendText2(text2){
+  var botId2 = "5ab3c11a5c3e7a70b27245075e";
+  UrlFetchApp.fetch("https://api.groupme.com/v3/bots/post", {"method":"post", "payload":'{"bot_id":"' + botId2 + '","text":"' + text2 + '"}'})
+  }
+ 
+function doPost(e){
+  var post = JSON.parse(e.postData.getDataAsString());
+  var text = post.text;
+  var name = post.name;
+  var user_id = post.user_id; // Used to tell who is sending the message ('System' returns 0)
+
+// Sends user's name and ID to a test chat, for possible future use
+//  sendText2(name + ', ' + user_id);
+   
+   text = text.trim().toLowerCase();
+   
+   //saveID(name, user_id);
+   
+   
+  //All the commands
+  var botL = '/l';  var botPooja = '/pooja';  var botCentral = '/central';  var botHelp = '/help';  var botAV = '/avform';  var botChkLst = '/checklist';  var botFaculty = '/faculty';
+  var botConfig = '/internetconfig';  var botTickets = '/tickets';  var botConfused = '/confused';  var botClassChecks = '/classchecks';  var botDirectory = '/directory';  var botGoogle = '/google';
+  var botSeppuku = "/seppuku";  var botRTFM = '/rtfm';  var botScript = '/script';  var botSchedule = '/schedule';  var botPDrive = '/pdrive';  var botInventory = '/inventory';  var botHD = '/hdform'; 
+  var botCashMe = '/cashme';  var botSos = '/sos';  var botCentral = '/central';  var botSpring = '/spring';  var botWrong = '\\';  var botShrug = '/shrug'; var botKillMe = '/killme';
+  var botReturn = '/return';  var botSydne = '/sydne'; var botAvInOut = '/avinout'; var botFinesse = '/finesse'; var botFear = '/fearwillbeplentiful'; var botOmw = '/omw'; var botNuhHaveDat = '/nuh';
+  var botHuh = '/huh'; var botHelloThere = '/hello'; var botMcafee = '/mcafee'; var botStatic = '/static'; var botPromo = '/promotion'; var botPrinters = '/printers'; var botSB = '/springbreak'; 
+  var botSpringBreak = '/breakschedule'; var botVPN = '/vpn'; var botAnalEval = '/analyst'; var botEval = '/eval'; var botFinals = '/finals'; var summer = '/summer'; var storer = '/storer'; var trello = '/trello'; var kaltura = '/kaltura';
+  
+  // Variables for shit with multiple possible outcomes
+  var google1 = 'http://bfy.tw/AoZK';  var google2 = 'http://bfy.tw/3won';  var google3 = 'http://bfy.tw/AobV';
+  
+  var L1 = "https://media.giphy.com/media/3o85xnoIXebk3xYx4Q/giphy.gif";  var L2 = "https://pbs.twimg.com/media/C4bu-X5UEAAuN-N.jpg";  var L3 = "https://i.groupme.com/320x179.gif.e9997f914ca24b63953436a3c4a37663";
+  var L4 = "https://i.groupme.com/202x205.gif.cc6470e780a544cfae0afd83a6d2652d";  var L5 = "https://i.groupme.com/320x320.gif.82fd160575b844ee980b152baf2ee1a7";
+  var L6 = "https://i.groupme.com/338x200.gif.23c600a536464b8bb75c5acd1f42817e";
+  
+  var welcome1 = 'https://media1.tenor.com/images/8d25398bbdaa5277ec447b57fc0aa918/tenor.gif'; var welcome2 = 'https://media1.tenor.com/images/9c5191cdb93f1d8901a3e8b666e9edb6/tenor.gif';
+  var welcome3 = 'https://thumbs.gfycat.com/EveryFineBubblefish-max-1mb.gif';
+  
+  var helpText = "-google, -script, -schedule, -spring, -users, -pdrive, -faculty, -inventory, -internetconfig, -directory, -avform, -HDForm, -help, -checklist, -tickets, -classchecks, -rtfm, -avinout, -killme, -mcafee, -static, -printers, -vpn";
+
+// Rejoined the group
+  if (text.indexOf("has rejoined the") > -1 && user_id == 0){
+     sendText("Welcome back");
+
+// Joined the group
+  }else if(text.indexOf(" added ") > -1 && user_id == 0){
+     var random = (Math.random()*3);
+    
+    if(random < 1){
+      sendText(welcome1);
+    } else if(random < 2){
+      sendText(welcome2);
+    } else if(random < 3){
+      sendText(welcome3);
+    }
+
+// Left the group
+  }else if(text.indexOf("has left the") > -1 && user_id == 0){
+    if (Math.random() < 0.5){ 
+       sendText("Didn't want you here anyway");
+     }else{
+       sendText('https://i.groupme.com/500x209.gif.f4985e2e56084bf2b5e5db539c981780.large');
+     }
+    
+// Removed from the group
+  }else if(text.indexOf(" removed ") > -1 && user_id == 0){
+     if (Math.random() < 0.5){ 
+       sendText("https://img.buzzfeed.com/buzzfeed-static/static/2017-02/2/12/asset/buzzfeed-prod-fastlane-01/anigif_sub-buzz-15619-1486056739-2.gif");
+     }else{
+       sendText('https://i.groupme.com/500x209.gif.f4985e2e56084bf2b5e5db539c981780.large');
+     }  
+
+// Changed NickName
+  /*}else if(text.indexOf("changed name to") > -1 && user_id == 0){
+     sendText("I liked the old one better");
+  */   
+// Test to see this shit works     
+  }else if(text.substring(0, 3) == "/hi"){
+    if (Math.random() < 0.5){
+      sendText("Hello, " + name);
+    }else{
+      sendText('https://cdn.nupic.co/images/2018/02/08/1505336492_source.gif');
+    }
+    
+//  }else if(text.substring(0, 6) == "/shadi"){
+//    sendText("https://media.giphy.com/media/2KGk2FEndnah2/giphy.gif");
+  
+  }else if(text.substring(0, 8) == botSeppuku){
+    sendText("https://giant.gfycat.com/ClearcutQuerulousHarvestmen.gif");
+    
+  }else if(text == botGoogle){
+    if(0.6 >= Math.random() > 0.3)
+      sendText(google1);
+    else if(Math.random() >0.6)
+      sendText(google2)
+    else
+      sendText(google3);
+
+  }else if(text == botCentral){
+  sendText('https://i.imgur.com/YD5sEUE');
+  
+  }
+  
+  else if(text == summer){
+  sendText('https://docs.google.com/spreadsheets/d/1hnuKP5kryuw8PYG5EbDTQPOV2nZSPrDMWz6J3pxxfMM/edit#gid=930135450');
+  
+  }
+  else if(text == botL){
+    var random = (Math.random()*6);
+    
+    if(random < 1){
+      sendText(L1);
+    } else if(random < 2){
+      sendText(L2);
+    } else if(random < 3){
+      sendText(L3);
+    } else if(random < 4){
+      sendText(L4);
+    } else if(random < 5){
+      sendText(L5);
+    } else if(random < 6){
+      sendText(L6);
+    }  
+  
+  }else if(text == botPooja){
+    sendText("/L");
+  
+  }else if(text == botFaculty){
+    sendText("https://drive.google.com/file/d/0Bw6hDgpynV3qUktjR3lta1VOVnc/view?usp=sharing");
+  
+  }else if(text == botHelp){
+    sendText("[Use a '/']The following [useful] commands are as follows:");
+    sendText(helpText);
+  
+  }else if(text == botAV){
+    sendText("http://www.bus.miami.edu/avEvent");
+  
+  }else if(text == botChkLst){
+    sendText("https://goo.gl/forms/uzKXHQ7Hdb6l94wQ2");
+    
+  }else if(text == botConfig){
+    sendText("https://drive.google.com/file/d/0B5JhXcgmXyMZQU9idUpxQVhTRXc/view");
+  
+  }else if(text == botTickets){
+    sendText("http://helpdesk.bus.miami.edu:7546");
+  
+  }else if(text == botConfused){
+    if(Math.random() < 0.5){
+      sendText("https://i.groupme.com/676x382.jpeg.cc9dcc226fd94a38a536f7bdfe2e2ae7.large");
+    }else{
+      sendText('https://i.groupme.com/341x264.jpeg.393c474251824d0e9864c9339a3b2022.large');
+    }
+      
+  }else if(text == botClassChecks){
+    sendText("https://tinyurl.com/SBA-ClassCheck");
+  
+  }else if(text == botDirectory){
+    sendText(" Hojo 8-9416 | Steve 8-5449 | Erick 8-2416 | Eliot 8-3606 | Facilities 8-8282 | May Peralta 8-5938 | Events (Maria Otero) 8-2362 | Blackboard 8-3949 |");
+  
+  }else if(text == botRTFM){
+    sendText("https://drive.google.com/open?id=1tES5uRM7D9x2KLcG-qf8mVhFxHSMls_AggoswbnLLgA");
+
+  }else if(text == botScript){
+    sendText("https://drive.google.com/open?id=1uXQnVasUe-tytr8ZPBnv4DhEljoIRKQaXFLWkrDzRw0");
+  
+  }else if(text == botSchedule){
+    sendText("https://docs.google.com/spreadsheets/d/1wJe5VEvOZ9bKiPwue-Xj5xlJXZobqDNVT2ryBe2N3G8/edit?usp=sharing");
+  
+  }else if(text == botPDrive){
+    sendText("Windows: \\\\10.39.5.237\\servicedesk$\\p | Mac: smb://10.39.5.237/servicedesk$/p");
+  
+  }else if(text == botInventory){
+    sendText("https://docs.google.com/a/bus.miami.edu/forms/d/1PeNKgSWNm7BFzOUyDP1sVpACvYhps-slhMFcCKvmzaM/viewform");
+  
+  }else if(text == botHD){
+    sendText("https://docs.google.com/spreadsheets/d/1czq1L1S03akvMlWqQNbkuil_dtvCLtmdZzw6dpU5zp4/edit#gid=0");
+  
+  }else if(text == botCashMe){
+    sendText("https://i.groupme.com/1126x498.png.ab7ca4f5d1f949cd81bbea1f5f36ffd6.large");
+  
+  }else if(text == botSos){
+    sendText('https://media1.tenor.com/images/03b76da3f17c5345f7858b9c351d5de6/tenor.gif');
+    sendText('https://78.media.tumblr.com/eaf0bb60054475152ef5c680c6548377/tumblr_mpied3DB0Z1qj80alo1_500.gif');
+    
+  }else if((text.substring(0,1) == botWrong) && (text.substring(0,2) != '\\\\')){
+    
+    if (Math.random() < 0.5){
+      sendText("https://i.groupme.com/190x218.gif.a5f512127441446aa1e821a3acb27e03");
+    }else{
+      sendText("https://media1.giphy.com/media/LXP19BrVaOOgE/giphy.gif");
+    }
+    
+  }else if(text == botShrug){
+    Logger.log("¯\\_(ツ)_/¯")
+    sendText("¯\\_(ツ)_/¯");
+
+  }else if(text == botSpring){
+    sendText("https://imgur.com/6bHvqVZ");
+  
+  }else if(text == botKillMe){
+    var random = (Math.random() * 7);
+    
+    if(random < 1){
+      sendText("https://media.giphy.com/media/3o6Mbo3OqiNSCvVMo8/giphy.gif");
+    }else if(random < 2){
+      sendText("https://i.imgur.com/4HM0pIm.gif")
+    }else if(random < 3){
+      sendText('https://media.giphy.com/media/JmJ9906MV9xvO/giphy.gif');
+    }else if(random < 4){
+      sendText('https://i.imgur.com/UF1vQAB.gif');
+    }else if(random < 5){
+      sendText('https://media.giphy.com/media/fuHdUls1uGRtS/giphy.gif');
+    }else if(random < 6){
+      sendText('https://i.makeagif.com/media/6-27-2016/X_35Ug.gif');
+    }else if(random < 7){
+      sendText('https://i.imgur.com/OdC68FV.gif');      
+    }
+  
+  }else if(text == botReturn){
+    sendText("https://sixprizes.com/wp-content/uploads/2014/03/pokeball-return-gary-1.jpg");  
+  
+  }else if(text == botSydne){
+    var random = (Math.random() * 7);
+    
+    if(random < 1){
+      sendText("https://media.giphy.com/media/NUBPqwou59A8U/giphy.gif");
+    }else if(random < 2){
+      sendText("https://media.tenor.com/images/f06145b80fbdaa33b4c186f8d8d7d8f7/tenor.gif")
+    }else if(random < 3){
+      sendText('https://i.groupme.com/384x288.gif.6cf20fe1024b4e2aa5a3f478b8ccfd06.large');
+    }else if(random < 4){
+      sendText('https://i.groupme.com/320x180.gif.c84fa3e4e53547db97db608081b0caf6.large');
+    }else if(random < 5){
+      sendText('https://i.groupme.com/498x250.gif.2dc8460c752c41c7a177c58872384a3e.large');
+    }else if(random < 6){
+      sendText('https://i.groupme.com/454x388.gif.2273d8f62909497d99fb422659ed821c.large');
+    }else if(random < 7){
+      sendText('https://media.giphy.com/media/E3L5goMMSoAAo/giphy.gif');      
+    }
+
+  }else if(text == botAvInOut){
+    sendText('https://docs.google.com/forms/d/e/1FAIpQLSeD-EuO5_Xa7W9c3MNy3x-Kvqj7Of6qo75Ed39i9uOQ2_yKFw/viewform?c=0&w=1');
+  
+  }else if(text == botFinesse){
+    sendText('https://i.groupme.com/375x375.gif.0092380e0613419b8cde1a7f4d8c95d7.large');
+    
+  }else if(text == botFear){
+      sendText('https://i.groupme.com/1440x1097.png.c64c0b29c82a45c790474621010156f1.large');
+  
+  }else if(text == botNuhHaveDat){
+    sendText('https://imgur.com/a/yMf5H');
+  
+  }else if(text == botHuh){
+    sendText('http://i0.kym-cdn.com/photos/images/newsfeed/001/238/242/d21.gif');
+    
+  }else if(text == botHelloThere){
+    sendText('https://cdn.nupic.co/images/2018/02/08/1505336492_source.gif');
+    
+  }else if(text.indexOf('hello') > -1){
+    if(Math.random() < 0.75){
+      sendText('https://cdn.nupic.co/images/2018/02/08/1505336492_source.gif');
+    }
+  
+  }else if(text == botMcafee){
+    sendText('s&B9+FL');
+  
+  }else if(text == botAnalEval){
+    sendText('https://docs.google.com/forms/d/e/1FAIpQLSc9kJzN-HNHS5hFqUYamd77uFHo_QQb7_Ym8f6oLKzQdMepBg/viewform');   
+  
+  }else if(text == botStatic){
+    sendText('https://i.groupme.com/1125x1500.jpeg.4567dbda01b841f3b9f8db28f5aa2177.large');
+    
+  }else if(text == botPromo || text.indexOf('promotion') > -1){  
+    sendText('http://i0.kym-cdn.com/photos/images/original/001/095/032/382.gif');
+  
+  }else if(text == botPrinters){
+    sendText('https://drive.google.com/file/d/1pmugVgtiXZ6F55w-OgOBoJal1jNQXmAG/view?usp=sharing');
+  
+  }else if(text == botSB){
+    sendText('https://goo.gl/forms/zck8ovZVsIeIIhBa2');
+    
+  }else if(text == botSpringBreak){
+     sendText('https://docs.google.com/spreadsheets/d/1M0RAMXnpb7qrz53CHTRxGCPMqAupJjbDR0T0eNvGT4M/edit?usp=sharing');
+  
+  }else if(text == botEval){
+     sendText('https://doodle.com/poll/9ddx3zxyyawni4bm');
+
+  }else if(text == botVPN){
+     sendText('https://it.miami.edu/wda/it/Enterprise_Remote_Access_SSL_VPN_Access_Client_Installation_Instructions_2016.pdf');
+     sendText('Make sure the Gateway is set up')
+     
+  }else if(text == botFinals){
+     sendText('https://goo.gl/forms/4uq8Ca7UpOaCGU1M2')
+     sendText('https://i.boring.host/3HIawR9.jpeg')
+     
+  }else if(text == '/finals schedule'){
+     sendText('https://docs.google.com/spreadsheets/d/1DnsvWyqKgGJx9uTLiIHX84ULC81czRDluKeWV8uXqYE/edit#gid=183720466')
+  
+  }else if(text == '/summer'){
+    sendText('https://goo.gl/forms/qF4mnxQj9nJYAPvw2')
+    
+  }else if(text == '/storer'){
+    sendText('https://i.groupme.com/768x1024.jpeg.d53e2737315b4dfca4f5f316018da11e.large')
+    sendText('3 (5+1) 2 4')
+    
+  }
+  else if(text == trello){
+    sendText('https://trello.com/sbaitservicesupport')
+    
+  }
+  
+  else if(text == kaltura){
+    sendText('https://lpt.it.miami.edu/wiki/knowledge-base/using-kaltura-media-to-create-and-upload-screen-capture-videos-to-blackboard-instructors-2/')
+    
+  }
+}
+//required method for google script
+function doGet(){}
